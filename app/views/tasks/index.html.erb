@@ -5,7 +5,7 @@
 <h1 class="mb-8 font-bold text-xl">Tasks</h1>
 
 <div class="mb-2">
-  Count: <%= Task.count %>
+  Remains: <%= Task.where(done: false).count %> / Total: <%= Task.count %>
 </div>
 
 <table id="tasks" class="table mb-16 border-collapse border border-slate-400">

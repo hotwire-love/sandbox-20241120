@@ -19,7 +19,7 @@
 <% end %>
 
 <%= turbo_stream.replace 'counts' do %>
-  <div id="counts" class="mb-2">
+  <div id="counts" class="mb-16">
     Remains: <%= Task.where(done: false).count %> / Total: <%= Task.count %>
   </div>
 <% end %>

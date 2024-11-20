@@ -5,11 +5,7 @@
 <h1 class="mb-8 font-bold text-xl">Tasks</h1>
 
 <div class="max-w-[640px]">
-  <div id="counts" class="mb-2">
-    Remains: <%= Task.where(done: false).count %> / Total: <%= Task.count %>
-  </div>
-
-  <table id="tasks" class="table mb-16 border-collapse border border-slate-400">
+  <table id="tasks" class="table border-collapse border border-slate-400">
     <thead>
       <tr>
         <th class="border border-slate-300"></th>
@@ -38,6 +34,10 @@
       <% end %>
     </tbody>
   </table>
+
+  <div id="counts" class="mb-16">
+    Remains: <%= Task.where(done: false).count %> / Total: <%= Task.count %>
+  </div>
 
   <div class="border rounded p-8">
     <%= turbo_frame_tag 'new_task', src: new_task_path %>

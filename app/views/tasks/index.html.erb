@@ -21,7 +21,18 @@
       <tr>
         <th class="border border-slate-300"><%= task.id %></th>
         <td class="border border-slate-300"><%= task.title %></td>
-        <td class="border border-slate-300"><%= task.done ? 'done' : 'not yet' %></td>
+        <td class="border border-slate-300">
+          <% if task.done? %>
+            <span class="text-success">done</span>
+          <% else %>
+            <div class="flex gap-x-8">
+              <div>not yet</div>
+              <div>
+                <%= button_to 'DONE', task_path(task), params: { task: { done: true } }, method: :patch, class: 'btn btn-primary btn-sm' %>
+              </div>
+            </div>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

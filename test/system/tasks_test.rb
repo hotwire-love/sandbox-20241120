@@ -9,7 +9,7 @@ class TasksTest < ApplicationSystemTestCase
     fill_in "Title", with: "ミルクを買う"
     click_on "Create Task"
     assert_text "Task was successfully created."
-    within '#tasks' do
+    within "#tasks" do
       assert_text "ミルクを買う"
     end
     assert_field "Title", with: ""
@@ -18,13 +18,13 @@ class TasksTest < ApplicationSystemTestCase
     fill_in "Title", with: "ネギを買う"
     click_on "Create Task"
     assert_text "Task was successfully created."
-    within '#tasks' do
+    within "#tasks" do
       assert_text "ネギを買う"
     end
-    assert_field "Title", with: ""
+    assert_field "Title", with:   ""
     assert_text "Remains: 2 / Total: 2"
 
-    rows = all('#tasks tbody tr')
+    rows = all("#tasks tbody tr")
     assert_equal 2, rows.size
     within rows[0] do
       assert_text "ミルクを買う"

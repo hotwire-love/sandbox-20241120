@@ -5,20 +5,31 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+  def new
+    @task = Task.new
+  end
+
   def create
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to tasks_path, status: :see_other, notice: "Task was successfully created."
+      # redirect_to tasks_path, status: :see_other, notice: "Task was successfully created."
+
+      flash.now.notice = "Task was successfully created."
     else
-      @tasks = Task.all
-      render :index, status: :unprocessable_entity
+      # @tasks = Task.all
+      # render :index, status: :unprocessable_entity
+
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
     @task.update!(task_done_params)
-    redirect_to tasks_path, status: :see_other, notice: "Task was successfully updated."
+
+    # redirect_to tasks_path, status: :see_other, notice: "Task was successfully updated."
+
+    flash.now.notice = "Task was successfully updated."
   end
 
   private

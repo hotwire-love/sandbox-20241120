@@ -4,7 +4,7 @@
 
 <h1 class="mb-8 font-bold text-xl">Tasks</h1>
 
-<div class="mb-2">
+<div id="counts" class="mb-2">
   Remains: <%= Task.where(done: false).count %> / Total: <%= Task.count %>
 </div>
 
@@ -18,7 +18,7 @@
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
-      <tr>
+      <tr id=<%= dom_id(task) %> >
         <th class="border border-slate-300"><%= task.id %></th>
         <td class="border border-slate-300"><%= task.title %></td>
         <td class="border border-slate-300">
@@ -39,6 +39,6 @@
 </table>
 
 <div class="border rounded p-8">
-  <%#= turbo_frame_tag 'new_task', src: new_task_path %>
-  <%= render "form", task: @task || Task.new %>
+  <%= turbo_frame_tag 'new_task', src: new_task_path %>
+  <%#= render "form", task: @task || Task.new %>
 </div>

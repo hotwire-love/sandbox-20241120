@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[update]
+  before_action :set_task, only: %i[update destroy]
 
   def index
     @tasks = Task.all
@@ -19,6 +19,11 @@ class TasksController < ApplicationController
   def update
     @task.update!(task_done_params)
     redirect_to tasks_path, status: :see_other, notice: "Task was successfully updated."
+  end
+
+  def destroy
+    @task.destroy!
+    redirect_to tasks_path, status: :see_other, notice: "Task was successfully deleted."
   end
 
   private

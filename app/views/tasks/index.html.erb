@@ -20,17 +20,18 @@
         <tr id=<%= dom_id(task) %> >
           <th class="border border-slate-300"><%= task.id %></th>
           <td class="border border-slate-300"><%= task.title %></td>
-          <td class="border border-slate-300">
+          <td class="border border-slate-300 flex gap-x-8">
             <% if task.done? %>
               <span class="text-success">done</span>
             <% else %>
-              <div class="flex gap-x-8">
-                <div>not yet</div>
-                <div>
-                  <%= button_to 'DONE', task_path(task), params: { task: { done: true } }, method: :patch, class: 'btn btn-primary btn-sm' %>
-                </div>
+              <div>not yet</div>
+              <div>
+                <%= button_to 'DONE', task_path(task), params: { task: { done: true } }, method: :patch, class: 'btn btn-primary btn-sm' %>
               </div>
             <% end %>
+            <div>
+              <%= button_to 'DELETE', task_path(task), method: :delete, class: 'btn btn-error btn-sm' %>
+            </div>
           </td>
         </tr>
       <% end %>

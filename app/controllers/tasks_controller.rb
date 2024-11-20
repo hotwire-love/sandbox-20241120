@@ -18,10 +18,7 @@ class TasksController < ApplicationController
 
   def update
     @task.update!(task_done_params)
-
-    # redirect_to tasks_path, status: :see_other, notice: "Task was successfully updated."
-
-    flash.now.notice = "Task was successfully updated."
+    redirect_to tasks_path, status: :see_other, notice: "Task was successfully updated."
   end
 
   private

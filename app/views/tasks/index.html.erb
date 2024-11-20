@@ -1,3 +1,5 @@
+<% turbo_refreshes_with(method: :morph, scroll: :preserve) %>
+
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Tasks" %>
@@ -5,11 +7,7 @@
 <h1 class="mb-8 font-bold text-xl">Tasks</h1>
 
 <div class="max-w-[640px]">
-  <div id="counts" class="mb-2">
-    Remains: <%= Task.where(done: false).count %> / Total: <%= Task.count %>
-  </div>
-
-  <table id="tasks" class="table mb-16 border-collapse border border-slate-400">
+  <table id="tasks" class="table border-collapse border border-slate-400">
     <thead>
       <tr>
         <th class="border border-slate-300"></th>
@@ -22,25 +20,29 @@
         <tr id=<%= dom_id(task) %> >
           <th class="border border-slate-300"><%= task.id %></th>
           <td class="border border-slate-300"><%= task.title %></td>
-          <td class="border border-slate-300">
+          <td class="border border-slate-300 flex gap-x-8">
             <% if task.done? %>
               <span class="text-success">done</span>
             <% else %>
-              <div class="flex gap-x-8">
-                <div>not yet</div>
-                <div>
-                  <%= button_to 'DONE', task_path(task), params: { task: { done: true } }, method: :patch, class: 'btn btn-primary btn-sm' %>
-                </div>
+              <div>not yet</div>
+              <div>
+                <%= button_to 'DONE', task_path(task), params: { task: { done: true } }, method: :patch, class: 'btn btn-primary btn-sm' %>
               </div>
             <% end %>
+            <div>
+              <%= button_to 'DELETE', task_path(task), method: :delete, class: 'btn btn-error btn-sm' %>
+            </div>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
+  <div id="counts" class="mb-16">
+    Remains: <%= Task.where(done: false).count %> / Total: <%= Task.count %>
+  </div>
+
   <div class="border rounded p-8">
-    <%= turbo_frame_tag 'new_task', src: new_task_path %>
-    <%#= render "form", task: @task || Task.new %>
+    <%= render "form", task: @task || Task.new %>
   </div>
 </div>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tasks, only: %i[index new create update destroy]
+  resources :tasks, only: %i[index create update]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
